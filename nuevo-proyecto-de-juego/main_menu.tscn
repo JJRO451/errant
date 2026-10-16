@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://c4g8hx55uhrxv"]
+
+[ext_resource type="Script" uid="uid://bi80cqh8ylbix" path="res://main_menu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control" unique_id=1686318550]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+game_scene = "uid://cmyxmqdjcmwb3"
+
+[node name="Background" type="ColorRect" parent="." unique_id=1307461466]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.09, 0.14, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1438064497]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer" unique_id=1843306459]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/MainPanel" unique_id=99891888]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "MI JUEGO"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/MainPanel" unique_id=998871391]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1365760939]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Jugar"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1251008031]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Opciones"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MainPanel" unique_id=1680058925]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Salir"
+
+[node name="OptionsPanel" type="VBoxContainer" parent="CenterContainer" unique_id=1358844482]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="OptionsTitle" type="Label" parent="CenterContainer/OptionsPanel" unique_id=1480341341]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Opciones"
+horizontal_alignment = 1
+
+[node name="VolumeRow" type="HBoxContainer" parent="CenterContainer/OptionsPanel" unique_id=1420310765]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/OptionsPanel/VolumeRow" unique_id=414097039]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Volumen"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/OptionsPanel/VolumeRow" unique_id=1431070819]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 80.0
+
+[node name="VolumeValue" type="Label" parent="CenterContainer/OptionsPanel/VolumeRow" unique_id=368200126]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "80%"
+horizontal_alignment = 2
+
+[node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/OptionsPanel" unique_id=1094511598]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Pantalla completa"
+
+[node name="BackButton" type="Button" parent="CenterContainer/OptionsPanel" unique_id=585848429]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Volver"
