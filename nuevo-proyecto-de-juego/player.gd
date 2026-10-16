@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 var speed := 300.0
 
+func _ready() -> void:
+	add_to_group("player")
+
 func _physics_process(_delta):
 	var direction := Input.get_vector(
 		"move_left",

@@ -99,8 +99,4 @@ offset_left = 127.0
 offset_top = 43.0
 offset_right = 167.0
 offset_bottom = 66.0
-text = "Puntos: 0"
-
-[node name="RestartButton" type="Button" parent="." unique_id=1908139891]
-offset_right = 8.0
-offset_bottom = 8.0
+text = "Monedas: 0"
