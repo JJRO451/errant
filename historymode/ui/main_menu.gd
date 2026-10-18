@@ -6,6 +6,9 @@ extends Control
 
 const SETTINGS_PATH := "user://settings.cfg"
 
+const EASTER_EGG_CODE := "errantlab"
+var _secret_buffer := ""
+
 @onready var main_panel: VBoxContainer = %MainPanel
 @onready var options_panel: VBoxContainer = %OptionsPanel
 @onready var play_button: Button = %PlayButton
@@ -24,6 +27,7 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 	volume_slider.value_changed.connect(_on_volume_changed)
 	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
+	set_process_unhandled_key_input(true)
 
 	# En web no tiene sentido el botón de salir.
 	if OS.has_feature("web"):
@@ -31,6 +35,7 @@ func _ready() -> void:
 
 	_load_settings()
 	_show_main_panel()
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -123,3 +128,45 @@ func _load_settings() -> void:
 	fullscreen_check.set_pressed_no_signal(fullscreen)
 	_apply_volume(volume)
 	_apply_fullscreen(fullscreen)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not event is InputEventKey:
+		return
+	var key:= event as InputEventKey
+	if not key.pressed or key.echo or key.unicode < 32:
+		return
+	var character := char(key.unicode).to_lower()
+	
+	_secret_buffer = (_secret_buffer + character).right(EASTER_EGG_CODE.length())
+	
+	if _secret_buffer == EASTER_EGG_CODE:
+		_secret_buffer = ""
+		_launch_sandbox()
+		get_viewport().set_input_as_handled()
+
+func _launch_sandbox() -> void:
+	var process_id: int =-1
+	
+	if OS.has_feature("editor"):
+		var demo_path := ProjectSettings.globalize_path("res://").path_join("../nuevo-proyecto-de-juego").simplify_path()
+		if not FileAccess.file_exists(
+		demo_path.path_join("project.godot")):
+			push_warning("No se encontró el proyecto Sandbox.")
+			return
+		process_id = OS.create_process(
+			OS.get_executable_path(),
+			PackedStringArray(["--path", demo_path])
+		)
+	else:
+		var game_folder := OS.get_executable_path().get_base_dir()
+		var demo_exe := game_folder.path_join("ErrantSandbox.exe")
+		if not FileAccess.file_exists(demo_exe):
+			push_warning("No se encontró ErrantSandbox.exe.")
+			return
+			
+		process_id = OS.create_process(
+			demo_exe,
+			PackedStringArray()
+		)
+	if process_id == -1:
+		push_warning("No se spudo iniciar el modo secreto")
