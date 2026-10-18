@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://cmyxmqdjcmwb3"]
+
+[ext_resource type="Script" uid="uid://bkqrw85ccvsn0" path="res://player/player.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cvflnxl18wtc5" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://dqcis7xu3gvo" path="res://world/scenery.gd" id="3_scenery"]
+[ext_resource type="PackedScene" path="res://enemies/enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://items/heart.tscn" id="6_heart"]
+[ext_resource type="PackedScene" path="res://items/coin.tscn" id="7_coin"]
+[ext_resource type="PackedScene" path="res://world/obstacle.tscn" id="8_obstacle"]
+[ext_resource type="PackedScene" path="res://ui/npc.tscn" id="9_npc"]
+[ext_resource type="Script" uid="uid://drxasbsqddxtw" path="res://story/story_trigger.gd" id="10_trigger"]
+[ext_resource type="PackedScene" path="res://story/story_gate.tscn" id="11_gate"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(36, 76)
+
+[node name="Main" type="Node2D" unique_id=949977286]
+script = ExtResource("1_1bvp3")
+
+[node name="Scenery" type="Node2D" parent="." unique_id=898321912]
+script = ExtResource("3_scenery")
+
+[node name="FenceTop" parent="." unique_id=1829446367 instance=ExtResource("8_obstacle")]
+modulate = Color(0.55, 0.38, 0.22, 1)
+position = Vector2(2300, 385)
+scale = Vector2(0.5, 12.03125)
+
+[node name="FenceBottom" parent="." unique_id=1449673350 instance=ExtResource("8_obstacle")]
+modulate = Color(0.55, 0.38, 0.22, 1)
+position = Vector2(2300, 1315)
+scale = Vector2(0.5, 12.03125)
+
+[node name="FenceGate" parent="." unique_id=827530210 instance=ExtResource("11_gate")]
+modulate = Color(0.85, 0.5, 0.25, 1)
+position = Vector2(2300, 850)
+scale = Vector2(0.5, 2.5)
+
+[node name="GateLockedTrigger" type="Area2D" parent="." unique_id=885486287]
+position = Vector2(2200, 850)
+script = ExtResource("10_trigger")
+dialogue_id = "gate_locked"
+size = Vector2(140, 200)
+once = false
+skip_if_flag = "done_mara_first"
+
+[node name="EnterOutskirtsTrigger" type="Area2D" parent="." unique_id=498349390]
+position = Vector2(2400, 850)
+script = ExtResource("10_trigger")
+dialogue_id = "enter_outskirts"
+size = Vector2(120, 240)
+
+[node name="Mara" parent="." unique_id=8093151 instance=ExtResource("9_npc")]
+position = Vector2(500, 790)
+repeat_dialogue = "mara_again"
+
+[node name="Tomas" parent="." unique_id=1084518693 instance=ExtResource("9_npc")]
+position = Vector2(1665, 770)
+display_name = "Tomás"
+first_dialogue = "tomas_first"
+body_color = Color(0.55, 0.7, 0.35, 1)
+hair_color = Color(0.3, 0.2, 0.12, 1)
+
+[node name="SignWelcome" parent="." unique_id=1431653170 instance=ExtResource("9_npc")]
+position = Vector2(330, 770)
+display_name = "Letrero"
+first_dialogue = "sign_welcome"
+is_sign = true
+body_color = Color(0.8, 0.6, 0.35, 1)
+
+[node name="SignPond" parent="." unique_id=267693224 instance=ExtResource("9_npc")]
+position = Vector2(700, 1170)
+display_name = "Letrero"
+first_dialogue = "sign_pond"
+is_sign = true
+body_color = Color(0.8, 0.6, 0.35, 1)
+
+[node name="Coin1" parent="." unique_id=1990054587 instance=ExtResource("7_coin")]
+position = Vector2(700, 330)
+
+[node name="Coin2" parent="." unique_id=831996599 instance=ExtResource("7_coin")]
+position = Vector2(1700, 1450)
+
+[node name="Coin3" parent="." unique_id=1814065681 instance=ExtResource("7_coin")]
+position = Vector2(250, 1150)
+
+[node name="Coin4" parent="." unique_id=2125752423 instance=ExtResource("7_coin")]
+position = Vector2(2600, 300)
+
+[node name="Coin5" parent="." unique_id=230271541 instance=ExtResource("7_coin")]
+position = Vector2(2750, 1000)
+
+[node name="Coin6" parent="." unique_id=1817120010 instance=ExtResource("7_coin")]
+position = Vector2(2500, 1450)
+
+[node name="Heart" parent="." unique_id=1479589307 instance=ExtResource("6_heart")]
+position = Vector2(1300, 1350)
+
+[node name="Heart2" parent="." unique_id=990574050 instance=ExtResource("6_heart")]
+position = Vector2(2900, 900)
+
+[node name="PatrolSouth" parent="." unique_id=1844497515 instance=ExtResource("5_enemy")]
+position = Vector2(900, 1550)
+patrol_offset = Vector2(600, 0)
+patrol_speed = 110.0
+
+[node name="ChaserSouth" parent="." unique_id=502162498 instance=ExtResource("5_enemy")]
+position = Vector2(1750, 1300)
+chase_player = true
+detect_radius = 260.0
+chase_speed = 130.0
+
+[node name="PatrolEast" parent="." unique_id=587287483 instance=ExtResource("5_enemy")]
+position = Vector2(2400, 1000)
+patrol_offset = Vector2(450, 0)
+patrol_speed = 120.0
+
+[node name="ShooterEast" parent="." unique_id=145770244 instance=ExtResource("5_enemy")]
+modulate = Color(0.75, 0.35, 1, 1)
+position = Vector2(2850, 1450)
+shoots = true
+shoot_interval = 2.2
+shoot_range = 650.0
+projectile_speed = 230.0
+
+[node name="FastEast" parent="." unique_id=1082506124 instance=ExtResource("5_enemy")]
+modulate = Color(1, 0.6, 0.1, 1)
+position = Vector2(2800, 200)
+patrol_offset = Vector2(0, 400)
+patrol_speed = 230.0
+
+[node name="ChaserEast" parent="." unique_id=816483612 instance=ExtResource("5_enemy")]
+position = Vector2(2750, 1250)
+chase_player = true
+detect_radius = 280.0
+chase_speed = 130.0
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1710469262]
+position = Vector2(230, 850)
+script = ExtResource("1_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=318919088]
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1258765812]
+process_mode = 3
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=309370673]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=636490521]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 39.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Fragmentos: 0"
+
+[node name="HealthLabel" type="Label" parent="HUD" unique_id=305355521]
+offset_left = 24.0
+offset_top = 45.0
+offset_right = 300.0
+offset_bottom = 68.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Vidas: 3"
+
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=1051668245]
+offset_left = 24.0
+offset_top = 74.0
+offset_right = 400.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Tiempo: 0.0 s"
+
+[node name="ObjectiveLabel" type="Label" parent="HUD" unique_id=1345030270]
+visible = false
+offset_left = 24.0
+offset_top = 103.0
+offset_right = 1100.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Objetivo:"
