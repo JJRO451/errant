@@ -2,7 +2,7 @@ extends Control
 
 ## Ruta de la escena que se carga al pulsar "Jugar".
 ## Se puede cambiar desde el Inspector.
-@export_file("*.tscn") var game_scene: String = "res://game.tscn"
+@export_file("*.tscn") var game_scene: String = "res://main.tscn"
 
 const SETTINGS_PATH := "user://settings.cfg"
 

@@ -8,6 +8,7 @@ const MAIN_MENU_SCENE := "res://main_menu.tscn"
 
 var _root: Control
 var _title: Label
+var _subtitle: Label
 var _resume_button: Button
 var _restart_button: Button
 var _menu_button: Button
@@ -27,8 +28,16 @@ func is_open() -> bool:
 
 ## Muestra el menú y pausa el juego.
 ## allow_resume = false oculta "Continuar" (por ejemplo, en la pantalla de victoria).
-func open(title: String, allow_resume: bool, restart_text: String = "Reiniciar") -> void:
+## subtitle es un texto opcional bajo el título (por ejemplo, el tiempo).
+func open(
+	title: String,
+	allow_resume: bool,
+	restart_text: String = "Reiniciar",
+	subtitle: String = ""
+) -> void:
 	_title.text = title
+	_subtitle.text = subtitle
+	_subtitle.visible = subtitle != ""
 	_resume_button.visible = allow_resume
 	_restart_button.text = restart_text
 	_root.show()
@@ -78,6 +87,12 @@ func _build_ui() -> void:
 	_title.add_theme_font_size_override("font_size", 56)
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(_title)
+
+	_subtitle = Label.new()
+	_subtitle.add_theme_font_size_override("font_size", 26)
+	_subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_subtitle.hide()
+	box.add_child(_subtitle)
 
 	var spacer := Control.new()
 	spacer.custom_minimum_size = Vector2(0, 16)

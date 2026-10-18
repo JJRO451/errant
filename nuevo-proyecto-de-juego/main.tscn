@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cvflnxl18wtc5" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://hu2xu4pjx3nr" path="res://coin.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" path="res://enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://heart.tscn" id="6_heart"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01psj"]
 size = Vector2(124, 122)
@@ -29,7 +31,7 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_01psj")
 
 [node name="Obstaculo1" type="StaticBody2D" parent="." unique_id=463320851]
-position = Vector2(750, 324)
+position = Vector2(621, 117)
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo1" unique_id=1405082784]
@@ -41,7 +43,7 @@ position = Vector2(2, -7)
 texture = ExtResource("2_h2yge")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="." unique_id=2112675555]
-position = Vector2(775, 503)
+position = Vector2(434, 570)
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2" unique_id=2037182507]
@@ -54,7 +56,7 @@ texture = ExtResource("2_h2yge")
 
 [node name="Coin" type="Area2D" parent="." unique_id=279078819]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(549, 500.99997)
+position = Vector2(608, 42.000008)
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_lquwl")
 
@@ -68,7 +70,7 @@ texture = ExtResource("2_h2yge")
 
 [node name="Coin2" type="Area2D" parent="." unique_id=1156638461]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(879.99994, 276)
+position = Vector2(153.00006, 330.00003)
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_lquwl")
 
@@ -82,7 +84,7 @@ texture = ExtResource("2_h2yge")
 
 [node name="Coin3" type="Area2D" parent="." unique_id=1158258561]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(759, 408.99997)
+position = Vector2(1080, 410)
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_lquwl")
 
@@ -95,8 +97,54 @@ position = Vector2(8.571516, -11.428574)
 texture = ExtResource("2_h2yge")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=491607971]
-offset_left = 127.0
-offset_top = 43.0
-offset_right = 167.0
-offset_bottom = 66.0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 100.0
+offset_bottom = 36.0
 text = "Monedas: 0"
+
+[node name="HealthLabel" type="Label" parent="." unique_id=25337178]
+offset_left = 11.0
+offset_top = 42.0
+offset_right = 71.0
+offset_bottom = 65.0
+text = "Vidas: 3"
+
+[node name="Enemy" parent="." unique_id=1102212971 instance=ExtResource("5_enemy")]
+position = Vector2(250, 450)
+patrol_offset = Vector2(350, 0)
+patrol_speed = 120.0
+
+[node name="Chaser" parent="." unique_id=331564415 instance=ExtResource("5_enemy")]
+position = Vector2(1000, 120)
+chase_player = true
+detect_radius = 280.0
+chase_speed = 130.0
+
+[node name="Shooter" parent="." unique_id=947107245 instance=ExtResource("5_enemy")]
+modulate = Color(0.75, 0.35, 1, 1)
+position = Vector2(150, 580)
+shoots = true
+shoot_interval = 2.2
+shoot_range = 650.0
+projectile_speed = 230.0
+
+[node name="FastEnemy" parent="." unique_id=1834969166 instance=ExtResource("5_enemy")]
+modulate = Color(1, 0.6, 0.1, 1)
+position = Vector2(1090, 200)
+patrol_offset = Vector2(0, 350)
+patrol_speed = 230.0
+
+[node name="Heart" parent="." unique_id=299359414 instance=ExtResource("6_heart")]
+position = Vector2(960, 560)
+
+[node name="TimeLabel" type="Label" parent="." unique_id=1763206291]
+offset_left = 11.0
+offset_top = 71.0
+offset_right = 112.0
+offset_bottom = 94.0
+text = "Tiempo: 0.0 s"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1899306347]
+process_mode = 3
+anchor_mode = 0

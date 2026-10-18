@@ -37,7 +37,7 @@ theme_override_constants/separation = 16
 [node name="Title" type="Label" parent="CenterContainer/MainPanel" unique_id=99891888]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "MI JUEGO"
+text = "ERRANT"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="CenterContainer/MainPanel" unique_id=998871391]
