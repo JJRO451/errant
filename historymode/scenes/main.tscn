@@ -141,6 +141,17 @@ script = ExtResource("1_0xm2m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=318919088]
 shape = SubResource("RectangleShape2D_player")
 
+[node name="ObjectiveLabel" type="Label" parent="Player/CollisionShape2D" unique_id=1345030270]
+visible = false
+offset_left = -206.0
+offset_top = -747.0
+offset_right = 870.0
+offset_bottom = -724.0
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Objetivo:"
+
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1258765812]
 process_mode = 3
 position_smoothing_enabled = true
@@ -174,14 +185,3 @@ offset_bottom = 97.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 text = "Tiempo: 0.0 s"
-
-[node name="ObjectiveLabel" type="Label" parent="HUD" unique_id=1345030270]
-visible = false
-offset_left = 24.0
-offset_top = 103.0
-offset_right = 1100.0
-offset_bottom = 126.0
-theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-text = "Objetivo:"

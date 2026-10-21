@@ -4,7 +4,7 @@ extends CanvasLayer
 ## Sirve como menú de pausa (Esc) y como pantalla de victoria.
 ## Se construye por código, así que no necesita escena propia.
 
-const MAIN_MENU_SCENE := "res://ui/main_menu.tscn"
+const MAIN_MENU_SCENE := "res://scenes/main_menu.tscn"
 
 var _root: Control
 var _title: Label
