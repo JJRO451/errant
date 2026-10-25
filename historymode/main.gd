@@ -196,7 +196,7 @@ func _update_time_label() -> void:
 
 
 func _update_objective_label() -> void:
-	objective_label.visible = Story.objective != "true"
+	objective_label.visible = Story.objective != " "
 	objective_label.text = "Objetivo: %s" % Story.objective
 
 
