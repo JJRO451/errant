@@ -19,13 +19,12 @@ signal died
 @export var knockback_strength: float = 450.0
 @export var knockback_decay: float = 1800.0
 
-@export_group("Apariencia")
-@export var shirt_color: Color = Color(0.2, 0.55, 0.9)
-@export var hair_color: Color = Color(0.2, 0.12, 0.08)
-
 var health: int
 var _invulnerable: bool = false
 var _knockback: Vector2 = Vector2.ZERO
+
+## Imagen animada del personaje (nodo "Sprite", ver character_sprite.gd).
+@onready var _sprite := get_node_or_null("Sprite") as CharacterSprite
 
 
 func _ready() -> void:
@@ -46,12 +45,12 @@ func _physics_process(delta: float) -> void:
 	_knockback = _knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	move_and_slide()
 
+	# La animación depende de lo que el jugador pulsa, no del empujón de un golpe.
+	if _sprite != null:
+		_sprite.set_motion(direction)
+
 	global_position.x = clampf(global_position.x, 32.0, world_size.x - 32.0)
 	global_position.y = clampf(global_position.y, 48.0, world_size.y - 48.0)
-
-
-func _draw() -> void:
-	CharacterArt.draw(self, shirt_color, hair_color)
 
 
 ## Lo llaman los enemigos y proyectiles al tocar al jugador.

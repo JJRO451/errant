@@ -11,6 +11,11 @@
 [ext_resource type="Script" uid="uid://drxasbsqddxtw" path="res://story/story_trigger.gd" id="10_trigger"]
 [ext_resource type="PackedScene" path="res://story/story_gate.tscn" id="11_gate"]
 
+[ext_resource type="Script" path="res://player/character_sprite.gd" id="12_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="13_player"]
+[ext_resource type="Texture2D" path="res://assets/sprites/mara.png" id="14_mara"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tomas.png" id="15_tomas"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(36, 76)
 
@@ -52,27 +57,26 @@ size = Vector2(120, 240)
 [node name="Mara" parent="." unique_id=8093151 instance=ExtResource("9_npc")]
 position = Vector2(500, 790)
 repeat_dialogue = "mara_again"
+sprite_sheet = ExtResource("14_mara")
 
 [node name="Tomas" parent="." unique_id=1084518693 instance=ExtResource("9_npc")]
 position = Vector2(1665, 770)
 display_name = "Tomás"
 first_dialogue = "tomas_first"
-body_color = Color(0.55, 0.7, 0.35, 1)
-hair_color = Color(0.3, 0.2, 0.12, 1)
+sprite_sheet = ExtResource("15_tomas")
+facing = 1
 
 [node name="SignWelcome" parent="." unique_id=1431653170 instance=ExtResource("9_npc")]
 position = Vector2(330, 770)
 display_name = "Letrero"
 first_dialogue = "sign_welcome"
 is_sign = true
-body_color = Color(0.8, 0.6, 0.35, 1)
 
 [node name="SignPond" parent="." unique_id=267693224 instance=ExtResource("9_npc")]
 position = Vector2(700, 1170)
 display_name = "Letrero"
 first_dialogue = "sign_pond"
 is_sign = true
-body_color = Color(0.8, 0.6, 0.35, 1)
 
 [node name="Coin1" parent="." unique_id=1990054587 instance=ExtResource("7_coin")]
 position = Vector2(700, 330)
@@ -137,6 +141,15 @@ chase_speed = 130.0
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1710469262]
 position = Vector2(230, 850)
 script = ExtResource("1_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("13_player")
+hframes = 4
+vframes = 4
+script = ExtResource("12_sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=318919088]
 shape = SubResource("RectangleShape2D_player")

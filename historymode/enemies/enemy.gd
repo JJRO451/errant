@@ -31,6 +31,7 @@ const PROJECTILE := preload("res://enemies/projectile.tscn")
 @export var projectile_speed: float = 220.0
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var _sprite := get_node_or_null("Sprite") as CharacterSprite
 
 var _point_a: Vector2
 var _point_b: Vector2
@@ -65,6 +66,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+	if _sprite != null:
+		_sprite.set_motion(velocity)
 
 	# Si patrullando choca con un obstáculo, da media vuelta.
 	if patrols and not chasing and _hit_obstacle():

@@ -1,7 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://mehqikjt07pf" path="res://enemies/enemy.gd" id="1_enemy"]
-[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_icon"]
+[ext_resource type="Script" path="res://player/character_sprite.gd" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemy.png" id="3_enemy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 24.0
@@ -14,9 +15,18 @@ modulate = Color(1, 0.25, 0.25, 1)
 collision_layer = 2
 script = ExtResource("1_enemy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_icon")
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("3_enemy")
+hframes = 4
+script = ExtResource("2_sprite")
+walk_frames = 4
+fps = 6.0
+animate_when_idle = true
+mirror_left = true
+row_left = 0
+row_right = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_body")
