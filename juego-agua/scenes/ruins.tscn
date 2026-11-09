@@ -1,0 +1,419 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_level"]
+[ext_resource type="Script" path="res://world/level_ground.gd" id="2_ground"]
+[ext_resource type="PackedScene" path="res://world/prop.tscn" id="3_prop"]
+[ext_resource type="PackedScene" path="res://items/coin.tscn" id="4_coin"]
+[ext_resource type="PackedScene" path="res://items/heart.tscn" id="5_heart"]
+[ext_resource type="PackedScene" path="res://enemies/enemy.tscn" id="6_enemy"]
+[ext_resource type="PackedScene" path="res://ui/npc.tscn" id="7_npc"]
+[ext_resource type="Script" path="res://story/story_trigger.gd" id="9_trigger"]
+[ext_resource type="Script" path="res://world/level_exit.gd" id="10_exit"]
+[ext_resource type="Script" path="res://world/level_spawn.gd" id="11_spawn"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="12_player"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="13_hud"]
+[ext_resource type="PackedScene" path="res://items/dirty_fragment.tscn" id="99_dirty"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_level")
+level_title = "Ruinas del Origen"
+level_subtitle = "Aquí nació la Luz"
+intro_dialogue = "ruins_intro"
+finish_on_all_coins = true
+player_light = true
+player_light_color = Color(0.8, 0.9, 1, 1)
+player_light_energy = 0.6
+player_light_scale = 2.8
+
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("2_ground")
+world_size = Vector2(2600, 1700)
+ground_color = Color(0.4, 0.42, 0.5, 1)
+patch_color = Color(0.35, 0.37, 0.45, 1)
+border_color = Color(0.1, 0.1, 0.16, 1)
+patch_count = 50
+speckle_count = 200
+speckle_colors = PackedColorArray(0.75, 0.85, 1, 0.55, 0.6, 0.7, 0.9, 0.5)
+random_seed = 3
+tile_size = 96.0
+tile_line_color = Color(0, 0, 0.1, 0.2)
+
+[node name="Ambiente" type="CanvasModulate" parent="."]
+color = Color(0.4, 0.44, 0.7, 1)
+
+[node name="Muros" type="Node2D" parent="."]
+
+[node name="Muro1" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(540, 760)
+kind = 5
+size = Vector2(60, 760)
+
+[node name="Muro2" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(540, 1700)
+kind = 5
+size = Vector2(60, 760)
+
+[node name="Muro3" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(2030, 760)
+kind = 5
+size = Vector2(60, 760)
+
+[node name="Muro4" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(2030, 1700)
+kind = 5
+size = Vector2(60, 760)
+
+[node name="Muro5" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(835, 530)
+kind = 5
+size = Vector2(530, 60)
+
+[node name="Muro6" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(1725, 530)
+kind = 5
+size = Vector2(550, 60)
+
+[node name="Muro7" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(860, 1280)
+kind = 5
+size = Vector2(580, 60)
+
+[node name="Muro8" parent="Muros" instance=ExtResource("3_prop")]
+position = Vector2(1725, 1280)
+kind = 5
+size = Vector2(550, 60)
+
+[node name="Decorado" type="Node2D" parent="."]
+
+[node name="BrilloAltar" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1285, 960)
+kind = 9
+size = Vector2(520, 260)
+color = Color(0.3, 0.8, 1, 0.22)
+
+[node name="BrilloSantuario" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2330, 960)
+kind = 9
+size = Vector2(360, 200)
+color = Color(0.3, 0.8, 1, 0.18)
+
+[node name="Altar" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1285, 930)
+kind = 8
+light_energy = 0.45
+
+[node name="Pilar1" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1030, 700)
+kind = 4
+
+[node name="Pilar2" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1030, 1130)
+kind = 4
+broken = true
+
+[node name="Pilar3" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1540, 700)
+kind = 4
+broken = true
+
+[node name="Pilar4" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1540, 1130)
+kind = 4
+
+[node name="Pilar5" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(720, 340)
+kind = 4
+broken = true
+
+[node name="Pilar6" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1840, 340)
+kind = 4
+
+[node name="Pilar7" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(720, 1400)
+kind = 4
+
+[node name="Pilar8" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1840, 1400)
+kind = 4
+broken = true
+
+[node name="Antorcha1" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(500, 740)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha2" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(500, 1000)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha3" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(580, 740)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha4" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(580, 1000)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha5" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1990, 740)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha6" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1990, 1000)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha7" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2070, 740)
+kind = 6
+light_energy = 0.7
+
+[node name="Antorcha8" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2070, 1000)
+kind = 6
+light_energy = 0.7
+
+[node name="Cristal1" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(90, 180)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal2" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(90, 1560)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal3" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(430, 300)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal4" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(430, 1400)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal5" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1130, 250)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal6" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1780, 420)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal7" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1700, 1180)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal8" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2500, 200)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal9" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2500, 1500)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal10" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2200, 330)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal11" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2200, 1380)
+kind = 7
+light_energy = 0.6
+
+[node name="Cristal12" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1285, 560)
+kind = 7
+light_energy = 0.6
+
+[node name="Roca1" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(300, 540)
+kind = 2
+
+[node name="Roca2" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(240, 1180)
+kind = 2
+
+[node name="Roca3" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(860, 780)
+kind = 2
+
+[node name="Roca4" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(880, 1060)
+kind = 2
+
+[node name="Roca5" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1700, 880)
+kind = 2
+
+[node name="Roca6" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1400, 380)
+kind = 2
+
+[node name="Roca7" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1400, 1560)
+kind = 2
+
+[node name="Roca8" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2380, 640)
+kind = 2
+
+[node name="Roca9" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2300, 1220)
+kind = 2
+
+[node name="Roca10" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(640, 420)
+kind = 2
+
+[node name="Roca11" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1920, 1580)
+kind = 2
+
+[node name="Roca12" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(760, 1560)
+kind = 2
+
+[node name="Arbusto1" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(200, 720)
+kind = 3
+
+[node name="Arbusto2" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(350, 1460)
+kind = 3
+
+[node name="Arbusto3" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(2450, 1000)
+kind = 3
+
+[node name="Arbusto4" parent="Decorado" instance=ExtResource("3_prop")]
+position = Vector2(1180, 1500)
+kind = 3
+
+[node name="Coin1" parent="." instance=ExtResource("4_coin")]
+position = Vector2(800, 260)
+fact_id = "fact_lluvia"
+
+[node name="Coin2" parent="." instance=ExtResource("4_coin")]
+position = Vector2(800, 1480)
+fact_id = "fact_rio"
+
+[node name="Coin3" parent="." instance=ExtResource("4_coin")]
+position = Vector2(1800, 1480)
+fact_id = "fact_acuifero"
+
+[node name="Coin4" parent="." instance=ExtResource("4_coin")]
+position = Vector2(2380, 850)
+fact_id = "fact_cuidar"
+
+[node name="DirtyFragment1" parent="." instance=ExtResource("99_dirty")]
+position = Vector2(1300, 1560)
+myth_id = "mito_pozo"
+
+[node name="DirtyFragment2" parent="." instance=ExtResource("99_dirty")]
+position = Vector2(2250, 850)
+myth_id = "mito_hervir"
+
+[node name="Heart1" parent="." instance=ExtResource("5_heart")]
+position = Vector2(300, 1250)
+
+[node name="Heart2" parent="." instance=ExtResource("5_heart")]
+position = Vector2(1800, 330)
+
+[node name="Heart3" parent="." instance=ExtResource("5_heart")]
+position = Vector2(2380, 520)
+
+[node name="SignRuins" parent="." instance=ExtResource("7_npc")]
+position = Vector2(330, 680)
+display_name = "Letrero"
+first_dialogue = "ruins_sign"
+is_sign = true
+
+[node name="PatrolNorte" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(1000, 330)
+patrol_offset = Vector2(500, 0)
+patrol_speed = 120.0
+
+[node name="ChaserSalon" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(1100, 880)
+myth_dialogue = "mito_pierde"
+chase_player = true
+detect_radius = 320.0
+chase_speed = 145.0
+
+[node name="ShooterNoreste" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(1900, 300)
+modulate = Color(0.75, 0.35, 1, 1)
+shoots = true
+shoot_interval = 2.0
+shoot_range = 650.0
+projectile_speed = 240.0
+
+[node name="PatrolSur" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(1000, 1420)
+patrol_offset = Vector2(550, 0)
+patrol_speed = 125.0
+
+[node name="FastEste" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(1850, 640)
+modulate = Color(1, 0.6, 0.1, 1)
+patrol_offset = Vector2(0, 450)
+patrol_speed = 230.0
+
+[node name="ShooterSantuario" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(2400, 1250)
+modulate = Color(0.75, 0.35, 1, 1)
+shoots = true
+shoot_interval = 1.8
+shoot_range = 700.0
+projectile_speed = 250.0
+
+[node name="ChaserSantuario" parent="." instance=ExtResource("6_enemy")]
+position = Vector2(2250, 640)
+myth_dialogue = "mito_cuidar_igual"
+chase_player = true
+detect_radius = 300.0
+chase_speed = 150.0
+
+[node name="AltarTrigger" type="Area2D" parent="."]
+script = ExtResource("9_trigger")
+position = Vector2(1285, 880)
+dialogue_id = "ruins_altar"
+size = Vector2(320, 280)
+
+[node name="SantuarioTrigger" type="Area2D" parent="."]
+script = ExtResource("9_trigger")
+position = Vector2(2130, 850)
+dialogue_id = "ruins_sanctum"
+size = Vector2(120, 240)
+
+[node name="ExitWest" type="Area2D" parent="."]
+script = ExtResource("10_exit")
+position = Vector2(40, 850)
+target_scene = "res://scenes/forest.tscn"
+spawn_id = "from_ruins"
+label = "← Bosque oscuro"
+size = Vector2(80, 300)
+label_offset = Vector2(130, -190)
+
+[node name="SpawnFromForest" type="Marker2D" parent="."]
+script = ExtResource("11_spawn")
+position = Vector2(180, 850)
+id = "from_forest"
+
+[node name="Player" parent="." instance=ExtResource("12_player")]
+position = Vector2(180, 850)
+
+[node name="HUD" parent="." instance=ExtResource("13_hud")]

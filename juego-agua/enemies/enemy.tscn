@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cfc18t7541llm"]
+
+[ext_resource type="Script" uid="uid://mehqikjt07pf" path="res://enemies/enemy.gd" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b6cw41eruaphj" path="res://player/character_sprite.gd" id="2_sprite"]
+[ext_resource type="Texture2D" uid="uid://bmn66y7sab68t" path="res://assets/sprites/enemy.png" id="3_enemy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+radius = 26.172504
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1848595229]
+modulate = Color(1, 0.25, 0.25, 1)
+collision_layer = 2
+script = ExtResource("1_enemy")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=220526289]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("3_enemy")
+hframes = 4
+script = ExtResource("2_sprite")
+walk_frames = 4
+fps = 6.0
+animate_when_idle = true
+row_left = 0
+row_right = 0
+mirror_left = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1389977154]
+shape = SubResource("CircleShape2D_body")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=134100631]
+position = Vector2(0, 2)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=213230839]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_hit")

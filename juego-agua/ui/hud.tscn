@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 39.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Fragmentos: 0"
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 45.0
+offset_right = 300.0
+offset_bottom = 68.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Vidas: 3"
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 74.0
+offset_right = 400.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Tiempo: 0.0 s"
+
+[node name="ObjectiveLabel" type="Label" parent="."]
+visible = false
+offset_left = 24.0
+offset_top = 103.0
+offset_right = 1100.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Objetivo:"

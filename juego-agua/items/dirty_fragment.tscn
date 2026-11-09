@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://items/dirty_fragment.gd" id="1_dirty"]
+[ext_resource type="Texture2D" uid="uid://c1tp7pqe622b5" path="res://icon.svg" id="2_icon"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dirty"]
+radius = 60.0
+
+[node name="DirtyFragment" type="Area2D"]
+modulate = Color(0.5, 0.45, 0.35, 1)
+scale = Vector2(0.35, 0.35)
+script = ExtResource("1_dirty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dirty")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_icon")

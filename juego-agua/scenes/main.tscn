@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://cmyxmqdjcmwb3"]
+
+[ext_resource type="Script" uid="uid://cvflnxl18wtc5" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://dqcis7xu3gvo" path="res://world/scenery.gd" id="3_scenery"]
+[ext_resource type="PackedScene" path="res://enemies/enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://items/heart.tscn" id="6_heart"]
+[ext_resource type="PackedScene" path="res://items/coin.tscn" id="7_coin"]
+[ext_resource type="PackedScene" path="res://world/obstacle.tscn" id="8_obstacle"]
+[ext_resource type="PackedScene" path="res://ui/npc.tscn" id="9_npc"]
+[ext_resource type="Script" uid="uid://drxasbsqddxtw" path="res://story/story_trigger.gd" id="10_trigger"]
+[ext_resource type="PackedScene" path="res://story/story_gate.tscn" id="11_gate"]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/mara.png" id="14_mara"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tomas.png" id="15_tomas"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="16_player"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="17_hud"]
+[ext_resource type="Script" path="res://world/level_exit.gd" id="18_exit"]
+[ext_resource type="Script" path="res://world/level_spawn.gd" id="19_spawn"]
+[ext_resource type="PackedScene" path="res://items/dirty_fragment.tscn" id="99_dirty"]
+
+[node name="Main" type="Node2D" unique_id=949977286]
+script = ExtResource("1_1bvp3")
+level_title = "Villaluz"
+level_subtitle = "El pueblo sin luz"
+finish_on_all_coins = false
+completed_objective = "Los fragmentos del pueblo brillan de nuevo. Cruza la valla del este: el bosque guarda más."
+
+[node name="Scenery" type="Node2D" parent="." unique_id=898321912]
+script = ExtResource("3_scenery")
+
+[node name="FenceTop" parent="." unique_id=1829446367 instance=ExtResource("8_obstacle")]
+modulate = Color(0.55, 0.38, 0.22, 1)
+position = Vector2(2300, 385)
+scale = Vector2(0.5, 12.03125)
+
+[node name="FenceBottom" parent="." unique_id=1449673350 instance=ExtResource("8_obstacle")]
+modulate = Color(0.55, 0.38, 0.22, 1)
+position = Vector2(2300, 1315)
+scale = Vector2(0.5, 12.03125)
+
+[node name="FenceGate" parent="." unique_id=827530210 instance=ExtResource("11_gate")]
+modulate = Color(0.85, 0.5, 0.25, 1)
+position = Vector2(2300, 850)
+scale = Vector2(0.5, 2.5)
+
+[node name="GateLockedTrigger" type="Area2D" parent="." unique_id=885486287]
+position = Vector2(2200, 850)
+script = ExtResource("10_trigger")
+dialogue_id = "gate_locked"
+size = Vector2(140, 200)
+once = false
+skip_if_flag = "done_mara_first"
+
+[node name="EnterOutskirtsTrigger" type="Area2D" parent="." unique_id=498349390]
+position = Vector2(2400, 850)
+script = ExtResource("10_trigger")
+dialogue_id = "enter_outskirts"
+size = Vector2(120, 240)
+
+[node name="Mara" parent="." unique_id=8093151 instance=ExtResource("9_npc")]
+position = Vector2(500, 790)
+repeat_dialogue = "mara_again"
+sprite_sheet = ExtResource("14_mara")
+
+[node name="Tomas" parent="." unique_id=1084518693 instance=ExtResource("9_npc")]
+position = Vector2(1665, 770)
+display_name = "Tomás"
+first_dialogue = "tomas_first"
+sprite_sheet = ExtResource("15_tomas")
+facing = 1
+
+[node name="SignWelcome" parent="." unique_id=1431653170 instance=ExtResource("9_npc")]
+position = Vector2(330, 770)
+display_name = "Letrero"
+first_dialogue = "sign_welcome"
+is_sign = true
+
+[node name="SignPond" parent="." unique_id=267693224 instance=ExtResource("9_npc")]
+position = Vector2(700, 1170)
+display_name = "Letrero"
+first_dialogue = "sign_pond"
+is_sign = true
+
+[node name="Coin1" parent="." unique_id=1990054587 instance=ExtResource("7_coin")]
+position = Vector2(700, 330)
+fact_id = "fact_planeta"
+
+[node name="Coin2" parent="." unique_id=831996599 instance=ExtResource("7_coin")]
+position = Vector2(1700, 1450)
+fact_id = "fact_dulce"
+
+[node name="Coin3" parent="." unique_id=1814065681 instance=ExtResource("7_coin")]
+position = Vector2(250, 1150)
+fact_id = "fact_hielo"
+
+[node name="Coin4" parent="." unique_id=2125752423 instance=ExtResource("7_coin")]
+position = Vector2(2600, 300)
+fact_id = "fact_evap"
+
+[node name="Coin5" parent="." unique_id=230271541 instance=ExtResource("7_coin")]
+position = Vector2(2750, 1000)
+fact_id = "fact_plantas"
+
+[node name="Coin6" parent="." unique_id=1817120010 instance=ExtResource("7_coin")]
+position = Vector2(2500, 1450)
+fact_id = "fact_mismo"
+
+[node name="DirtyFragment1" parent="." instance=ExtResource("99_dirty")]
+position = Vector2(1880, 1500)
+myth_id = "mito_basura"
+
+[node name="DirtyFragment2" parent="." instance=ExtResource("99_dirty")]
+position = Vector2(2640, 1100)
+myth_id = "mito_llave"
+
+[node name="Heart" parent="." unique_id=1479589307 instance=ExtResource("6_heart")]
+position = Vector2(1300, 1350)
+
+[node name="Heart2" parent="." unique_id=990574050 instance=ExtResource("6_heart")]
+position = Vector2(2900, 900)
+
+[node name="PatrolSouth" parent="." unique_id=1844497515 instance=ExtResource("5_enemy")]
+position = Vector2(900, 1550)
+myth_dialogue = "mito_infinita"
+patrol_offset = Vector2(600, 0)
+patrol_speed = 110.0
+
+[node name="ChaserSouth" parent="." unique_id=502162498 instance=ExtResource("5_enemy")]
+position = Vector2(1750, 1300)
+myth_dialogue = "mito_mar"
+chase_player = true
+detect_radius = 260.0
+chase_speed = 130.0
+
+[node name="PatrolEast" parent="." unique_id=587287483 instance=ExtResource("5_enemy")]
+position = Vector2(2400, 1000)
+patrol_offset = Vector2(450, 0)
+patrol_speed = 120.0
+
+[node name="ShooterEast" parent="." unique_id=145770244 instance=ExtResource("5_enemy")]
+modulate = Color(0.75, 0.35, 1, 1)
+position = Vector2(2850, 1450)
+shoots = true
+shoot_interval = 2.2
+shoot_range = 650.0
+projectile_speed = 230.0
+
+[node name="FastEast" parent="." unique_id=1082506124 instance=ExtResource("5_enemy")]
+modulate = Color(1, 0.6, 0.1, 1)
+position = Vector2(2800, 200)
+patrol_offset = Vector2(0, 400)
+patrol_speed = 230.0
+
+[node name="ChaserEast" parent="." unique_id=816483612 instance=ExtResource("5_enemy")]
+position = Vector2(2750, 1250)
+chase_player = true
+detect_radius = 280.0
+chase_speed = 130.0
+
+[node name="Player" parent="." unique_id=1710469262 instance=ExtResource("16_player")]
+position = Vector2(230, 850)
+
+[node name="HUD" parent="." unique_id=309370673 instance=ExtResource("17_hud")]
+
+[node name="ForestSpawn" type="Marker2D" parent="." groups=["level_spawns"]]
+position = Vector2(2780, 850)
+script = ExtResource("19_spawn")
+id = "from_forest"
+
+[node name="ForestExit" type="Area2D" parent="."]
+position = Vector2(2960, 850)
+script = ExtResource("18_exit")
+target_scene = "res://scenes/forest.tscn"
+spawn_id = "from_village"
+label = "Bosque oscuro →"
+size = Vector2(80, 300)
+label_offset = Vector2(-120, -190)
